@@ -12,7 +12,6 @@
 		$product_name = $_POST['product_name'];
 		$price = $_POST['price'];
 		$amount = $_POST['amount'];
-		$comment = $_POST['comment'];
 		if(!empty($product_name) && !empty($price) && !empty($amount))
 		{
 			$result_check = pg_query($con, "select product_name from product where shop_name = '$work_unit' and product_name = '$product_name';");
@@ -22,7 +21,7 @@
 			}
 			else
 			{
-				pg_query($con,"insert into product(shop_name, product_name, price, amount, comment) values ('$work_unit','$product_name','$price', '$amount', '$comment');");
+				pg_query($con,"insert into product(shop_name, product_name, price, amount) values ('$work_unit','$product_name','$price', '$amount');");
 				echo "Database updated successfully! ";
 				echo '<a href="main_page.php" title="Update database">Click here to see changes</a>';
 				die;
@@ -62,7 +61,6 @@
 			<label>Product name......................: </label><input type = "text" name = "product_name"><br><br>
 			<label>Price.....................................: </label><input type = "text" name = "price"><br><br>
 			<label>Amount...............................: </label><input type = "text" name = "amount"><br><br>
-			<label>Comment.............................: </label><input type = "text" name = "comment"><br><br>
 			<input type = "submit" value = "Update"><br><br>
 	</form>
 	</center>
